@@ -799,7 +799,7 @@ esac
 KLICLDFLAGS="$KLICLDFLAGS $XLDFLAGS"
 
 LIBPATH=""
-for dir in /lib /usr/lib /usr/local/lib; do
+for dir in /lib /usr/lib /usr/local/lib /usr/lib/system; do
     if test -d $dir; then
 	LIBPATH="$LIBPATH $dir"
     fi
@@ -829,7 +829,7 @@ echo ' '
 
 LIBNAMES=""
 locate_file libc_s.a f $LIBPATH && LIBNAMES="$LIBNAMES libc_s"
-( locate_file libm.a f $LIBPATH || locate_file libm.so f $LIBPATH ) \
+( locate_file libm.a f $LIBPATH || locate_file libm.so f $LIBPATH || locate_file libm.dylib f $LIBPATH) \
 	&& LIBNAMES="$LIBNAMES libm"
 ( locate_file libelf.a f $LIBPATH || locate_file libelf.so f $LIBPATH ) \
 	&& LIBNAMES="$LIBNAMES libelf"
@@ -846,6 +846,7 @@ echo ' '
 locate_file libc.a f $LIBPATH ||
 locate_file libc_s.a f $LIBPATH ||
 locate_file libc.so f $LIBPATH ||
+locate_file libsystem_c.dylib f $LIBPATH ||
 give_up_config "Couldn't locate libc.a in directories $LIBPATH"
 LIBFILES="$where"
 echo $n "# Using library file(s):"$c
@@ -855,6 +856,9 @@ for lib in $LIBNAMES; do
     echo $n " $where"$c
   elif locate_file $lib.so f $LIBPATH; then
 # for SGI IRIS IRIX 5.2
+    LIBFILES="$LIBFILES $where"
+    echo $n " $where"$c
+  elif locate_file $lib.dylib f $LIBPATH; then
     LIBFILES="$LIBFILES $where"
     echo $n " $where"$c
   else
@@ -945,7 +949,7 @@ try_sed()
     return
 }
 
-try_sed 's/^.* [ATDSIW]  *[_.]*//p' 's/^.* [ATDSIW] //p' ||
+try_sed 's/^.* [ATDSIW]  *[_.]*//p' 's/^.* [ATDSIW] //p' 's/ (.*)$//p' ||
 try_sed 's/^__*//' 's/^\([a-zA-Z_0-9$]*\).*xtern.*/\1/p' ||
 try_sed '/|UNDEF/d' '/FUNC..GL/s/^.*|__*//p' ||
 try_sed 's/^.* D __*//p' 's/^.* D //p' ||
