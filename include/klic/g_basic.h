@@ -133,9 +133,10 @@ extern q** make_larger_stack();
   external functions
 */
 
+#ifndef DEFINE_GLOBAL
 #ifdef __GNUC__
 extern Volatile voidfn G_error;
 #else
 extern voidfn G_error;
 #endif
-
+#endif

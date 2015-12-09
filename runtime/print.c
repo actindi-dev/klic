@@ -15,18 +15,11 @@
 #include <klic/gobj.h>
 #include <klic/susp.h>
 
-print_partially(x, depth, length)
-     q x;
-     unsigned long depth, length;
-{
-  fprint_partially(stdout, x, depth, length);
-}
-
 #ifdef DEBUGLIB
 int verbose_print;
 #endif
 
-fprint_partially(stream, x, depth, length)
+void fprint_partially(stream, x, depth, length)
      FILE *stream;
      q x;
      unsigned long depth, length;
@@ -154,6 +147,13 @@ fprint_partially(stream, x, depth, length)
   }
 
   return;
+}
+
+print_partially(x, depth, length)
+     q x;
+     unsigned long depth, length;
+{
+  fprint_partially(stdout, x, depth, length);
 }
 
 fprint(stream, x)

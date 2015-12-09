@@ -5,6 +5,7 @@
 %       (Read COPYRIGHT-JIPDEC for detailed information.)
 ----------------------------------------------------------- */
 
+#define DEFINE_GLOBAL
 #include <klic/gdobject.h>
 #include <klic/functorstuffs.h>
 #include <klic/atomstuffs.h>

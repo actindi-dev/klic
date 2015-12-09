@@ -24,6 +24,10 @@
 #include <sys/times.h>
 #include <sys/param.h>
 
+#ifndef HZ
+#define HZ 60
+#endif
+
 #define	 tick2msec(n)	((n)*1000.0/HZ)
 
 #define	 timerstruct	struct tms

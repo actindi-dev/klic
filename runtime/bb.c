@@ -260,7 +260,7 @@ q bblt_fix_2(x)
 
  type_error:
   builtin_2_type_error(x,
-    predicate_floating__arithmetics_xfloating__point__to__integer_2,
+    &predicate_floating__arithmetics_xfloating__point__to__integer_2,
 		       "fix/2");
  suspend_x:
   return suspend_builtin_2(x,

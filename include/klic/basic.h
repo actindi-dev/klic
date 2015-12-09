@@ -35,10 +35,12 @@
 
 typedef void voidfn ();
 
+#ifndef IN_DEBUG_C
 extern NoReturn voidfn fatal;
 extern NoReturn voidfn fatalf;
 extern NoReturn voidfn fatalp;
 extern void debug_printf();
+#endif
 
 /*
   PARALLEL flag is DIST || SHM.

@@ -8,6 +8,7 @@
 #include <setjmp.h>
 #include <ctype.h>
 #include <errno.h>
+#define IN_DEBUG_C
 #include <klic/basic.h>
 #include <klic/struct.h>
 #include <klic/primitives.h>

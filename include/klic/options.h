@@ -20,8 +20,6 @@ enum argtype {
     ARG_NOT_USED
 };
 
-extern Const struct opttable opttable[];
-
 char *parse_opts();
 
 /* not copied when spawned */

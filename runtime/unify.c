@@ -41,7 +41,7 @@ extern struct predicate predicate_unify__term__dcode_xunify__goal_2;
 
 /* Resume a goal with the same priority as current */
 
-Inline void resume_same_prio(gp)
+void resume_same_prio(gp)
      struct goalrec *gp;
 {
   declare_globals;
@@ -60,7 +60,7 @@ Inline void resume_same_prio(gp)
   by the unification with `y'
 */
 
-Inline q *resume_goals(allocp, x, y)
+q *resume_goals(allocp, x, y)
      q * allocp;
      q x;
      q y;
